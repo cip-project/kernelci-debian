@@ -2,10 +2,17 @@
 # Copyright (C) 2016, Siemens AG, Wolfgang Mauerer <wolfgang.mauerer@siemens.com>
 # SPDX-License-Identifier:	Apache-2.0
 # Install kernelci backend
-
 echo "START: install_backend.sh"
+
 cd $HOME && mkdir git-repos && cd git-repos
-git clone https://github.com/kernelci/kernelci-backend-config.git kernelci-backend
+
+# Check if repo already exists in the /vagrant directory, if not, download it from github
+GIT_SRC="https://github.com/kernelci/kernelci-backend-config.git"
+if [ -d /vagrant/kernelci-backend-config ]; then
+    GIT_SRC=/vagrant/kernelci-backend-config
+fi
+git clone $GIT_SRC kernelci-backend
+
 cd kernelci-backend
 #commit 00bded1b69fa6233daf2837f383b5279acc21c44
 #Author: Milo Casagrande <milo.casagrande@linaro.org>
@@ -43,4 +50,4 @@ echo "[CIP-KernelCI]" > $HOME/.buildpy.cfg
 echo "token=$TOKEN" >> $HOME/.buildpy.cfg
 echo "url=http://localhost:8888" >> $HOME/.buildpy.cfg
 
-echo "DONE: install_backend.sh"
+echo "END: install_backend.sh"
