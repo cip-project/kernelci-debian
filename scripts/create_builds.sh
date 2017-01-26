@@ -13,10 +13,8 @@ echo "Building ARMhf cip-stegosaurus Tree"
 export TREE_NAME=cip-stegosaurus
 ~/kernelci-build/build.py -c sunxi_defconfig -p CIP-KernelCI
 ~/kernelci-build/build.py -c axm55xx_defconfig -p CIP-KernelCI
-echo "Building ARM64 cip-triceratops Tree"
+echo "Building ARMhf cip-triceratops Tree"
 export TREE_NAME=cip-triceratops
-export ARCH=arm64
-export CROSS_COMPILE=aarch64-linux-gnu-
 ~/kernelci-build/build.py -c tinyconfig -p CIP-KernelCI
 ~/kernelci-build/build.py -c allnoconfig -p CIP-KernelCI
 
