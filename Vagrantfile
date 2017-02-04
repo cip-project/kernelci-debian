@@ -10,6 +10,7 @@ integration-scripts/install_dependencies.sh
 integration-scripts/install_backend.sh
 integration-scripts/install_frontend.sh
 integration-scripts/install_build_script.sh
+integration-scripts/configure_singledev.sh
 SCRIPT
 
 Vagrant.configure(2) do |config|
@@ -20,8 +21,11 @@ Vagrant.configure(2) do |config|
     vbox.customize ["modifyvm", :id, "--cpus", "2"]
  end
 
- # Forward ports for internal REST server (8888) and frontend webserver (5555)
+ # Forward port 8888 for the internal REST server 
  config.vm.network :forwarded_port, guest: 8888, host: 8888
+ # Forward port 8000 for the Storage Server
+ config.vm.network :forwarded_port, guest: 8000, host: 8000
+ # Forward port 5000 for the KernelCI Frontend Web Server
  config.vm.network :forwarded_port, guest: 5000, host: 5000
 
  config.vm.provision "build", type: "shell" do |s|
