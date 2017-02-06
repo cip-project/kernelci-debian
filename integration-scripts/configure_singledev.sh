@@ -11,11 +11,11 @@ sudo sed -ie 's/app.run(thread/app.run(host='\''0.0.0.0'\'', thread/g' /srv/kern
 # To Make KernelCI use the local machine for the "KernelCI Storage Server"
 # 1. Add this line in Vagrantfile, where ports are forwarded:
 # Make FILE_SERVER_URL point to 'http://localhost:8000/' instead of 'localhost'.
-sudo sed -ie "s/localhost/localhost:8000\//" /etc/linaro/kernelci-frontend.cfg
+sudo sed -ie "/FILE_SERVER_URL/s/localhost/localhost:8000\//g" /etc/linaro/kernelci-frontend.cfg
 
 # 2. The first is /etc/linaro/kernelci-frontend.cfg:
 # Make FILE_SERVER_URL point to "http://127.0.0.1:8000/" instead of "127.0.0.1".
-sudo sed -ie "s/127.0.0.1\//127.0.0.1:8000\//" /srv/kernelci-frontend/app/dashboard/default_settings.py
+sudo sed -ie "/FILE_SERVER_URL/s/127.0.0.1/127.0.0.1:8000/g" /srv/kernelci-frontend/app/dashboard/default_settings.py
 
 # 3. Run the fileserver from the directory that has artifacts:
 # cd /var/www/images/kernel-ci

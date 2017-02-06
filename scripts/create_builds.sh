@@ -1,6 +1,6 @@
 cd ~
 cd git-repos
-git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+git clone https://gitlab.com/cip-project/linux-cip.git
 cd linux-stable
 git checkout -b cip_v4.4.27 v4.4.27
 echo "Building ARMhf cip-tyrannosaurus Tree"
